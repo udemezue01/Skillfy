@@ -2,12 +2,18 @@
   <div class = "bg-gray-100 flex items-center justify-center p-12 space-y-5 flex-col">
     <h1 class="text-xl">Job Board</h1>
     <div v-if="jobs.length">
-      <div v-for="job in jobs" :key="job.id" class="flex bg-white space-y-12 w-full">
+      <div v-for="job in jobs" :key="job.id" class="bg-white space-y-12 w-full p-6">
+
+
+        <div class="flex">
+
         <img :src="job.company_logo" alt="Company Logo" />
         <h2>{{ job.title }}</h2> 
         <p>{{ job.company_name }}</p>
         <p>{{ job.description }}</p>
         <p>{{ job.salary }}</p>
+        </div>
+       
         <div>
           <span v-for="tag in job.tag" :key="tag">{{ tag }}</span>
         </div>
