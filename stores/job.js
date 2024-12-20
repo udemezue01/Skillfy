@@ -15,7 +15,7 @@ export const useJobStore = defineStore('jobStore', {
 
     },
     async addJob(job) {
-      await addDoc(collection(db, "job"), job);
+      await addDoc(collection(db, "Job"), job);
       this.fetchJobs();
     },
   },
