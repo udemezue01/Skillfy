@@ -5,7 +5,7 @@
 
     <Hero/>
 
-    <!-- <Jobs/> -->
+    <Jobs/>
 
 </div>
 
