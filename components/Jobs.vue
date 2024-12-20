@@ -1,52 +1,32 @@
 <template>
-	
-	<div class="bg-gray-100 h-screen">
-
-		<div class="flex items-center justify-center p-8">
-    <h1 class="text-3xl font-bold mb-5"> Jobs </h1>
-   
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div
-        v-for="job in jobs"
-        :key="job.id"
-        class="p-4 border rounded shadow hover:shadow-lg transition"
-      >
-        <img :src="job.company_logo" alt="Logo" class="w-16 h-16 mb-4" />
-        <h2 class="text-xl font-semibold">{{ job.title }}</h2>
-        <p class="text-gray-500">{{ job.company_name }}</p>
-        <p class="mt-2 text-gray-700">{{ job.description }}</p>
-        <p class="mt-2 font-bold">{{ job.salary }}</p>
-        <div class="mt-4">
-          <span
-            v-for="tag in job.tag"
-            :key="tag"
-            class="bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-sm mr-2"
-          >
-            {{ tag }}
-          </span>
+  <div class = "bg-gray-100 flex items-center justify-center p-12 space-y-5 flex-col">
+    <h1 class="text-xl">Job Board</h1>
+    <div v-if="jobs.length">
+      <div v-for="job in jobs" :key="job.id" class="flex bg-white space-y-12 w-full">
+        <img :src="job.company_logo" alt="Company Logo" />
+        <h2>{{ job.title }}</h2> 
+        <p>{{ job.company_name }}</p>
+        <p>{{ job.description }}</p>
+        <p>{{ job.salary }}</p>
+        <div>
+          <span v-for="tag in job.tag" :key="tag">{{ tag }}</span>
         </div>
       </div>
     </div>
-
+    <div v-else>
+      <p>No jobs available</p>
+    </div>
   </div>
-
-
-	</div>
-
-
 </template>
 
 <script setup>
 import { useJobStore } from "../stores/job";
-import { onMounted } from "vue";
+import { storeToRefs } from "pinia";
 
 const jobStore = useJobStore();
+const { jobs } = storeToRefs(jobStore);
 
-// Fetch jobs when the component is mounted
 onMounted(() => {
   jobStore.fetchJobs();
 });
-
-// Jobs will be reactive, so when fetched, they will automatically be updated
-const jobs = jobStore.jobs;
 </script>
