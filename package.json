@@ -10,6 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@firebase/app": "^0.10.17",
+    "@firebase/app-types": "^0.9.3",
     "@pinia/nuxt": "^0.9.0",
     "firebase": "^11.1.0",
     "nuxt": "^3.13.2",
