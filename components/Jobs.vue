@@ -3,7 +3,7 @@
     <h1 class="text-xl">Latest Jobs</h1>
     
   
-    <ul role="list" class="divide-y divide-gray-100 bg-white space-y-12 w-2/4 p-6" v-for="job in jobs" :key="job.id">
+    <ul role="list" class="divide-y divide-gray-100 bg-white space-y-12 w-full lg:w-2/4 p-6" v-for="job in jobs" :key="job.id">
 
   <li class="flex justify-between gap-x-6 py-5">
     <div class="flex min-w-0 gap-x-4">

@@ -1,70 +1,81 @@
 <template>
+    
+<!--
+  This example requires updating your template:
 
-    <div class="w-full max-w-lg p-6 m-auto mx-auto dark:bg-gray-800 font-body">
-        <h1 class="text-3xl font-semibold text-center text-gray-700 dark:text-white">Register</h1>
-    
-        <form class="space-y-8">
-            <div>
-                <label for="username" class="block text-sm text-gray-800 dark:text-gray-200">Username</label>
-                <input type="text" class="block w-full px-6 py-4 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
-            </div>
-    
-            <div class="">
-                <div class="flex items-center justify-between">
-                    <label for="password" class="block text-sm text-gray-800 dark:text-gray-200">Password</label>
-                    <NuxtLink to="/password-reset" class="text-xs text-gray-600 dark:text-gray-400 hover:underline">Forget Password?</NuxtLink>
-                </div>
-    
-                <input type="password" class="block w-full px-6 py-4 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
-            </div>
-    
-            <div class="">
-                <button class="w-full py-4 px-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
-                    Register
-                </button>
-            </div>
-        </form>
-    
-        <div class="flex items-center justify-between mt-4">
-            <span class="w-1/5 border-b dark:border-gray-600 lg:w-1/5"></span>
-    
-            <a href="#" class="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline">
-                or login with Social Media
-            </a>
-    
-            <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
+  ```
+  <html class="h-full bg-white">
+  <body class="h-full">
+  ```
+-->
+<div class="flex h-screen bg-gray-50 flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon items-center justify-center mx-auto icon-tabler icon-tabler-affiliate h-8 w-8" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M5.931 6.936l1.275 4.249m5.607 5.609l4.251 1.275" />
+              <path d="M11.683 12.317l5.759 -5.759" />
+              <circle cx="5.5" cy="5.5" r="1.5" />
+              <circle cx="18.5" cy="5.5" r="1.5" />
+              <circle cx="18.5" cy="18.5" r="1.5" />
+              <circle cx="8.5" cy="15.5" r="4.5" />
+            </svg>
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Create an account</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-white p-6">
+    <form @submit.prevent="handleRegister" class="space-y-6" action="#" method="POST">
+
+      <div>
+        <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
+        <div class="mt-2">
+          <input v-model="email" type="email" name="email" id="email" autocomplete="email" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
         </div>
-    
-        <div class="flex items-center mt-6 -mx-2">
-            <button type="button" class="flex items-center  justify-center w-full px-6 py-4 mx-2 text-sm font-medium text-white transition-colors duration-300 transform bg-blue-500 rounded hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
-                <svg class="w-4 h-4 mx-2 fill-current" viewBox="0 0 24 24">
-                    <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z">
-                    </path>
-                </svg>
-    
-                <span class="hidden mx-2 sm:inline">Sign in with Google</span>
-            </button>
-    
-            <a href="#" class="px-6 py-4 mx-2 text-sm font-medium text-gray-500 transition-colors duration-300 transform bg-gray-300 rounded hover:bg-gray-200">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z">
-                    </path>
-                </svg>
-            </a>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
+          <div class="text-sm">
+            <a href="#" class="font-semibold text-purple-600 hover:text-purple-500">Forgot password?</a>
+          </div>
         </div>
-    
-        <p class="mt-8 text-xs font-light text-center text-gray-400"> Already have an account? <nuxt-link to="login" class="font-medium text-gray-700 dark:text-gray-200 hover:underline">Sign In</nuxt-link></p>
-    </div>
-    
-    </template>
-    
-    <script>
-    
-    
-    export default {
-        name: "RegisterPage",
-    
-    }
-    </script>
-        
-    
+        <div class="mt-2">
+          <input v-model="password" type="password" name="password" id="password" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600 sm:text-sm/6">
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" class="flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">Sign in</button>
+      </div>
+    </form>
+
+     <p v-if="error" class="text-red-500 mt-4">{{ error }}</p>
+
+    <p class="mt-10 text-center text-sm/6 text-gray-500">
+      Not a member?
+      <a href="#" class="font-semibold text-purple-600 hover:text-purple-500">Start a 14 day free trial</a>
+    </p>
+  </div>
+</div>
+
+
+</template>
+
+
+
+<script setup>
+import { ref } from "vue";
+import { useAuthStore } from "../stores/auth";
+
+const authStore = useAuthStore();
+const email = ref("");
+const password = ref("");
+
+const handleRegister = async () => {
+  await authStore.register(email.value, password.value);
+  if (!authStore.error) {
+    alert("Registered successfully!");
+    window.location.href = "/login";
+  }
+};
+</script>
