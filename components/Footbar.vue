@@ -4,24 +4,24 @@
   <div class="container p-10 mx-auto">
     <div class="grid grid-cols-2 xl:grid-cols-5 justify-items-center m-2 ">
       <div class="px-4 space-y-4">
-        <h2 class="title-font font-medium tracking-wide text-sm mb-3">SKILLFY</h2>
+        <h2 class="title-font font-medium tracking-wide text-sm mb-3">Skillfy</h2>
         <nav class="list-none mb-10 space-y-4">
           <li>
             <a class="">Home</a>
           </li>
           <li>
-            <a class="">FAQ</a>
+            <a class="">Newsletter Signup</a>
           </li>
           <li>
             <a class="">Get In Touch</a>
           </li>
           <li>
-            <a class="">Blog</a>
+            <a class="">Careers</a>
           </li>
         </nav>
       </div>
       <div class="px-4">
-        <h2 class="title-font font-medium tracking-wide text-sm mb-3">SUPPPORT</h2>
+        <h2 class="title-font font-medium tracking-wide text-sm mb-3">Support</h2>
         <nav class="list-none mb-10 space-y-4">
           <li>
             <a class=""> Help & Support</a>
@@ -30,7 +30,7 @@
             <a class="">FAQ</a>
           </li>
           <li>
-            <a class="">Get In Touch</a>
+            <a class="">Report a Problem</a>
           </li>
           <li>
             <a class="">Blog</a>
@@ -38,7 +38,7 @@
         </nav>
       </div>
       <div class="px-4">
-        <h2 class="title-font font-medium tracking-wide text-sm mb-3">CONNECT WITH US</h2>
+        <h2 class="title-font font-medium tracking-wide text-sm mb-3">Connect With Us</h2>
         <nav class="list-none mb-10 space-y-4">
           <li>
             <a class="">Email</a>
@@ -55,34 +55,35 @@
         </nav>
       </div>
       <div class="px-4">
-        <h2 class="title-font font-medium tracking-wide text-sm mb-3">CATEGORIES</h2>
+        <h2 class="title-font font-medium tracking-wide text-sm mb-3">Categories</h2>
         <nav class="list-none mb-10 space-y-4">
           <li>
-            <a class="">Frontend jobs</a>
+
+            <NuxtLink to="/Frontend" class=""> Frontend Jobs </NuxtLink>
           </li>
           <li>
-            <a class="">Backend Jobs</a>
+            <NuxtLink to="/Backend" class=""> Backend Jobs </NuxtLink>
           </li>
           <li>
-            <a class="">Marketing Jobs</a>
+            <NuxtLink to="/Marketing" class=""> Marketing Jobs </NuxtLink>
           </li>
           
         </nav>
       </div>
       <div class="px-4">
-        <h2 class="title-font font-medium tracking-wide text-sm mb-3">CATEGORIES</h2>
+        <h2 class="title-font font-medium tracking-wide text-sm mb-3">Legal and Policies</h2>
         <nav class="list-none mb-10 space-y-4">
           <li>
-            <a class="">First Link</a>
+            <a class="">Privacy Policy</a>
           </li>
           <li>
-            <a class="">Second Link</a>
+            <a class="">Terms of Service</a>
           </li>
           <li>
-            <a class="">Third Link</a>
+            <a class="">Cookie Policy</a>
           </li>
           <li>
-            <a class="">Fourth Link</a>
+            <a class="">Accessibility Statement </a>
           </li>
         </nav>
       </div>
