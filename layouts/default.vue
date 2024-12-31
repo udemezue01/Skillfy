@@ -13,7 +13,7 @@
 
 
 <script setup>
-console.log('Default layout applied');
+
 </script>
 
 
