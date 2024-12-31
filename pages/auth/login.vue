@@ -1,13 +1,5 @@
-<template>
-    
-<!--
-  This example requires updating your template:
 
-  ```
-  <html class="h-full bg-white">
-  <body class="h-full">
-  ```
--->
+<template>
 <div class="flex h-screen bg-gray-50 flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
      <svg xmlns="http://www.w3.org/2000/svg" class="icon items-center justify-center mx-auto icon-tabler icon-tabler-affiliate h-8 w-8" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
