@@ -7,16 +7,16 @@
         <h2 class="title-font font-medium tracking-wide text-sm mb-3">Skillfy</h2>
         <nav class="list-none mb-10 space-y-4">
           <li>
-            <a class="">Home</a>
+            <NuxtLink to="/company/about/"class="">About</NuxtLink>
           </li>
           <li>
-            <a class="">Newsletter Signup</a>
+            <NuxtLink to="/company/newsletter/"  class="">Newsletter</NuxtLink>
           </li>
           <li>
-            <a class="">Get In Touch</a>
+            <NuxtLink to="/company/contact/" class="">Get In Touch</NuxtLink>
           </li>
           <li>
-            <a class="">Careers</a>
+            <NuxtLink to="/company/careers/" class="">Careers</NuxtLink>
           </li>
         </nav>
       </div>
@@ -24,16 +24,16 @@
         <h2 class="title-font font-medium tracking-wide text-sm mb-3">Support</h2>
         <nav class="list-none mb-10 space-y-4">
           <li>
-            <a class=""> Help & Support</a>
+            <NuxtLink to="/company/help/" class=""> Help & Support</NuxtLink>
           </li>
           <li>
-            <a class="">FAQ</a>
+            <NuxtLink to="/company/faq" class="">FAQ</NuxtLink>
           </li>
           <li>
-            <a class="">Report a Problem</a>
+            <NuxtLink to="/company/report" class="">Report a Problem</NuxtLink>
           </li>
           <li>
-            <a class="">Blog</a>
+            <NuxtLink to="/company/blog/" class="">Blog</NuxtLink>
           </li>
         </nav>
       </div>
@@ -74,13 +74,13 @@
         <h2 class="title-font font-medium tracking-wide text-sm mb-3">Legal and Policies</h2>
         <nav class="list-none mb-10 space-y-4">
           <li>
-            <a class="">Privacy Policy</a>
+            <NuxtLink to="/company/privacy-policy/" class="">Privacy Policy</NuxtLink>
           </li>
           <li>
-            <a class="">Terms of Service</a>
+            <NuxtLink to="/company/terms-of-service/" class="">Terms of Service</NuxtLink>
           </li>
           <li>
-            <a class="">Cookie Policy</a>
+            <NuxtLink to="/company/cookie-policy/" class="">Cookie Policy</NuxtLink>
           </li>
           <li>
             <a class="">Accessibility Statement </a>
