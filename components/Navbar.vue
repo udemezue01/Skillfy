@@ -2,7 +2,7 @@
 <template>
     <!--   The navigational bar section -->
   
-    <nav class="bg-white flex font-body text-md justify-between py-4 px-6 lg:px-32 items-center shadow-sm sticky top-0">
+    <nav class="bg-white flex font-body text-md justify-between py-4 px-6 lg:px-32 items-center shadow-sm sticky top-0 relative">
         
         <div class="text-white text-center">
   
@@ -48,11 +48,27 @@
         <!-- The navbar toggle section -->
         <div class="lg:hidden items-center">
   
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path></svg>
+          <svg  @click="toggleDropDown" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path></svg>
           
         </div>
   
         <!-- End of the navbar toggle section -->
+
+        <!-- start a dropdown -->
+
+        <div v-if="isDropDown"  class=" absolute bg-gray-50 p-4 space-y-6 top-0 right-0 w-56 mt-20 text-center lg:hidden">
+
+          <div class="text-gray-900 font-semibold font-body text-sm mx-auto"> Home </div>
+
+          <div class="text-gray-900 font-semibold font-body text-sm mx-auto"> Frontend </div>
+
+          <div class="text-gray-900 font-semibold font-body text-sm mx-auto"> Backend </div>
+
+          <div class="text-gray-900 font-semibold font-body text-sm mx-auto"> Marketing </div>
+
+        </div>
+
+            <!-- end a dropdown -->
   
       </nav>
   
@@ -61,9 +77,19 @@
       
   </template>
   
-  <script>
-  export default {
-    name: 'Navbar'
-  }
+  <script setup>
+
+   import { ref } from "vue";
+
+  const isDropDown = ref(false)
+
+  const toggleDropDown = () => {
+    isDropDown.value = !isDropDown.value;
+ 
+};
+
+
+ 
+
   </script>
   
