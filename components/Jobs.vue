@@ -34,8 +34,8 @@
 
     </div>
     <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-      <p class="text-sm/6 text-gray-900">{{job.tag}}</p>
-      <p class="mt-1 text-xs/5 text-gray-500">Posted <time datetime="2023-01-23T13:23Z">3h ago</time></p>
+      
+      <p class="mt-1 text-xs/5 text-black">Posted <time datetime="2023-01-23T13:23Z">3h ago</time></p>
     </div>
   </li>
 
