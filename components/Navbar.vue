@@ -40,8 +40,8 @@
         
         <div class="flex justify-center hidden xl:block">
         
-        <NuxtLink to="/auth/register" >  <button class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Post a Job</button> </NuxtLink>
-        <NuxtLink to="/auth/login" > <button class="ml-4 inline-flex text-black bg-lime-300 border-0 py-2 px-6 focus:outline-none hover:bg-lime-400 rounded text-lg">Sign In</button> </NuxtLink>
+        <NuxtLink to="/auth/register" >  <button class="inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-500 rounded text-lg">Post a Job</button> </NuxtLink>
+        <NuxtLink to="/auth/login" > <button class="ml-4 inline-flex text-white bg-gray-600 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 rounded text-lg">Sign In</button> </NuxtLink>
       </div>
         
   

@@ -7,6 +7,7 @@ export const useJobStore = defineStore('jobStore', {
     jobs: [],
   }),
   actions: {
+    
     async fetchJobs() {
       const querySnapshot = await getDocs(collection(db, "Job"));
       this.jobs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -14,9 +15,20 @@ export const useJobStore = defineStore('jobStore', {
 
 
     },
+
     async addJob(job) {
       await addDoc(collection(db, "Job"), job);
       this.fetchJobs();
     },
-  },
+
+    async fetchJobById(id) {
+      const jobDoc = await db.collection("jobs").doc(id).get();
+      if (jobDoc.exists) {
+        return { ...jobDoc.data(), id: jobDoc.id };
+      }
+      return null;
+    },
+
+  }
+
 });
