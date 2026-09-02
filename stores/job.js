@@ -22,7 +22,7 @@ export const useJobStore = defineStore('jobStore', {
     },
 
     async fetchJobById(id) {
-      const jobDoc = await db.collection("jobs").doc(id).get();
+      const jobDoc = await db.collection("Job").doc(id).get();
       if (jobDoc.exists) {
         return { ...jobDoc.data(), id: jobDoc.id };
       }

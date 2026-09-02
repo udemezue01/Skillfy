@@ -1,64 +1,258 @@
 <template>
-  <div class = "bg-gray-100 flex font-body items-center justify-center p-12 space-y-5 flex-col">
-    <h1 class="text-xl">Latest Jobs</h1>
+  <div class="bg-gray-100 min-h-screen font-body flex items-center justify-center p-6 sm:p-12 flex-col space-y-6">
     
-  
-    <ul role="list" class="divide-y divide-gray-100 bg-white space-y-12 w-full lg:w-4/6 p-6" v-for="job in jobs" :key="job.id">
+    <!-- Section Header -->
+    <div class="w-full lg:w-4/6 flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Latest Remote Jobs</h1>
+        <p class="text-sm text-gray-500 mt-1">Discover recently posted remote positions around the globe</p>
+      </div>
+      <span class="hidden sm:inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-600 border border-red-100">
+        {{ dummyJobs.length }} Active Roles
+      </span>
+    </div>
 
-  <li class="flex justify-between gap-x-6 py-5 shadown-sm rounded-sm ">
-    <div class="flex min-w-0 gap-x-4 ">
-      <img class="size-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1662947190722-5d272f82a526?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-      <div class="min-w-0 flex-auto">
-        <p class="text-sm/6 font-semibold text-gray-800">{{ job.company_name }}</p>
-        <p class="mt-1 font truncate text-md text-gray-900 flex space-x-1 items-center">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-gray-400">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
-</svg>
-<NuxtLink :to="`/jobs/${job.id}`" > 
-          {{job.title}}
+    <!-- Jobs Card List Container -->
+    <div class="w-full lg:w-4/6 bg-white rounded-2xl shadow-xs border border-gray-200/80 divide-y divide-gray-100 overflow-hidden">
+      <ul role="list" class="divide-y divide-gray-100">
+        <li 
+          v-for="job in paginatedJobs" 
+          :key="job.id" 
+          class="p-5 sm:p-6 hover:bg-gray-50/80 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+        >
+          <!-- Left: Company Logo & Details -->
+          <div class="flex items-start sm:items-center gap-4 min-w-0">
+            <img 
+              class="h-12 w-12 flex-none rounded-xl bg-gray-50 object-cover border border-gray-200" 
+              :src="job.logo" 
+              :alt="job.company_name" 
+            />
+            
+            <div class="min-w-0 flex-1 space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-semibold text-gray-500">{{ job.company_name }}</span>
+                <span v-if="job.featured" class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-red-700 bg-red-100 rounded-md">
+                  Featured
+                </span>
+              </div>
 
+              <!-- Job Title -->
+              <NuxtLink 
+                :to="`/jobs/${job.id}`" 
+                class="block text-base font-bold text-gray-900 hover:text-red-600 transition-colors truncate"
+              >
+                {{ job.title }}
+              </NuxtLink>
 
-        </NuxtLink>
-        
+              <!-- Meta Info Badges -->
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500 pt-0.5">
+                <!-- Tag / Category -->
+                <span class="inline-flex items-center gap-1 font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
+                  {{ job.tag }}
+                </span>
+
+                <!-- Job Type -->
+                <span class="flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  {{ job.type }}
+                </span>
+
+                <!-- Salary -->
+                <span class="flex items-center gap-1 text-gray-700 font-medium">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {{ job.salary }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Posted Time & Action -->
+          <div class="flex items-center justify-between sm:flex-col sm:items-end gap-2 flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-gray-100">
+            <p class="text-xs text-gray-400">
+              Posted <time :datetime="job.posted_at">{{ job.posted_at }}</time>
+            </p>
+
+            <NuxtLink 
+              :to="`/jobs/${job.id}`" 
+              class="inline-flex items-center justify-center px-3.5 py-1.5 text-xs font-semibold text-gray-700 bg-gray-100 hover:bg-red-600 hover:text-white rounded-lg transition-all"
+            >
+              Apply Now
+            </NuxtLink>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Pagination Controls -->
+      <div class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Pagination Info -->
+        <p class="text-xs text-gray-600">
+          Showing <span class="font-semibold text-gray-900">{{ startIndex + 1 }}</span> to 
+          <span class="font-semibold text-gray-900">{{ Math.min(endIndex, dummyJobs.length) }}</span> of 
+          <span class="font-semibold text-gray-900">{{ dummyJobs.length }}</span> jobs
         </p>
 
-        <p class="mt-1 truncate text-sm text-black flex items-center">
+        <!-- Page Buttons -->
+        <div class="inline-flex items-center gap-1">
+          <button 
+            @click="prevPage" 
+            :disabled="currentPage === 1"
+            class="px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-medium text-gray-600 bg-white hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          >
+            Previous
+          </button>
 
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" class="size-4 text-gray-400">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-</svg>
+          <button 
+            v-for="page in totalPages" 
+            :key="page"
+            @click="goToPage(page)"
+            :class="[
+              'px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors',
+              currentPage === page 
+                ? 'bg-red-600 text-white' 
+                : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-100'
+            ]"
+          >
+            {{ page }}
+          </button>
 
-          
-          
-          {{job.tag}}
-        
-        </p>
-
+          <button 
+            @click="nextPage" 
+            :disabled="currentPage === totalPages"
+            class="px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-medium text-gray-600 bg-white hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          >
+            Next
+          </button>
+        </div>
       </div>
 
     </div>
-    <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-      
-      <p class="mt-1 text-xs/5 text-black">Posted <time datetime="2023-01-23T13:23Z">3h ago</time></p>
-    </div>
-  </li>
-
-</ul>
-
-
-
   </div>
 </template>
 
 <script setup>
-import { useJobStore } from "../stores/job";
-import { storeToRefs } from "pinia";
+import { ref, computed } from 'vue'
 
-const jobStore = useJobStore();
-const { jobs } = storeToRefs(jobStore);
+// Local Mock Job Data (Store Disconnected)
+const dummyJobs = ref([
+  {
+    id: 1,
+    company_name: 'Stripe',
+    logo: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=120&auto=format&fit=crop&q=80',
+    title: 'Senior Frontend Engineer (Vue / Nuxt)',
+    tag: 'Frontend',
+    type: 'Full-time',
+    salary: '$130k - $160k',
+    posted_at: '2h ago',
+    featured: true
+  },
+  {
+    id: 2,
+    company_name: 'Vercel',
+    logo: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=120&auto=format&fit=crop&q=80',
+    title: 'Lead Backend Developer (Node.js)',
+    tag: 'Backend',
+    type: 'Full-time',
+    salary: '$140k - $180k',
+    posted_at: '4h ago',
+    featured: false
+  },
+  {
+    id: 3,
+    company_name: 'Shopify',
+    logo: 'https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=120&auto=format&fit=crop&q=80',
+    title: 'Growth Marketing Specialist',
+    tag: 'Marketing',
+    type: 'Full-time',
+    salary: '$90k - $120k',
+    posted_at: '6h ago',
+    featured: false
+  },
+  {
+    id: 4,
+    company_name: 'Linear',
+    logo: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=120&auto=format&fit=crop&q=80',
+    title: 'Full Stack Engineer (TypeScript)',
+    tag: 'Backend',
+    type: 'Contract',
+    salary: '$80 / hr',
+    posted_at: '12h ago',
+    featured: true
+  },
+  {
+    id: 5,
+    company_name: 'GitLab',
+    logo: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=120&auto=format&fit=crop&q=80',
+    title: 'DevOps & Infrastructure Specialist',
+    tag: 'Backend',
+    type: 'Full-time',
+    salary: '$120k - $150k',
+    posted_at: '1d ago',
+    featured: false
+  },
+  {
+    id: 6,
+    company_name: 'Figma',
+    logo: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=120&auto=format&fit=crop&q=80',
+    title: 'UI/UX Product Designer',
+    tag: 'Design',
+    type: 'Full-time',
+    salary: '$110k - $140k',
+    posted_at: '1d ago',
+    featured: false
+  },
+  {
+    id: 7,
+    company_name: 'Notion',
+    logo: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=120&auto=format&fit=crop&q=80',
+    title: 'Technical Content Marketer',
+    tag: 'Marketing',
+    type: 'Full-time',
+    salary: '$85k - $105k',
+    posted_at: '2d ago',
+    featured: false
+  },
+  {
+    id: 8,
+    company_name: 'Supabase',
+    logo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80',
+    title: 'Database Systems Architect',
+    tag: 'Backend',
+    type: 'Full-time',
+    salary: '$150k - $190k',
+    posted_at: '2d ago',
+    featured: true
+  }
+])
 
-onMounted(() => {
-  jobStore.fetchJobs();
-});
+// Pagination Reactive State
+const currentPage = ref(1)
+const itemsPerPage = ref(4)
+
+const totalPages = computed(() => Math.ceil(dummyJobs.value.length / itemsPerPage.value))
+const startIndex = computed(() => (currentPage.value - 1) * itemsPerPage.value)
+const endIndex = computed(() => startIndex.value + itemsPerPage.value)
+
+const paginatedJobs = computed(() => {
+  return dummyJobs.value.slice(startIndex.value, endIndex.value)
+})
+
+// Navigation Methods
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) currentPage.value++
+}
+
+const prevPage = () => {
+  if (currentPage.value > 1) currentPage.value--
+}
+
+const goToPage = (page) => {
+  currentPage.value = page
+}
 </script>
